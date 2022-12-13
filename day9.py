@@ -76,6 +76,47 @@ def count_moves(instructions: List[str]) -> int:
             head_coord: List[int] = move_head(instruction, head_coord, 1)
 
             tail_coord: List[int] = move_tail(head_coord, tail_coord)
+
+            moves += 1
+            
+            if tail_coord not in visited_points:
+                visited_points.append(tail_coord)
+
+    return len(visited_points)
+
+
+def count_moves_of_10_units(instructions: List[str]) -> int:
+
+    visited_points: List[List[int]] = []
+    
+    head_coord: List[int] = [0,0]
+    coord_1: List[int] = [0,0]
+    coord_2: List[int] = [0,0]
+    coord_3: List[int] = [0,0]
+    coord_4: List[int] = [0,0]
+    coord_5: List[int] = [0,0]
+    coord_6: List[int] = [0,0]
+    coord_7: List[int] = [0,0]
+    coord_8: List[int] = [0,0]
+    tail_coord: List[int] = [0,0]
+
+    instruction: str
+    for instruction in instructions:
+        moves: int = 0
+        steps: int = int(instruction[2:])
+        while moves != steps:
+
+            head_coord: List[int] = move_head(instruction, head_coord, 1)
+            coord_1: List[int] = move_tail(head_coord, coord_1)
+            coord_2: List[int] = move_tail(coord_1, coord_2)
+            coord_3: List[int] = move_tail(coord_2, coord_3)
+            coord_4: List[int] = move_tail(coord_3, coord_4)
+            coord_5: List[int] = move_tail(coord_4, coord_5)
+            coord_6: List[int] = move_tail(coord_5, coord_6)
+            coord_7: List[int] = move_tail(coord_6, coord_7)
+            coord_8: List[int] = move_tail(coord_7, coord_8)
+            tail_coord: List[int] = move_tail(coord_8, tail_coord)
+            
             moves += 1
             
             if tail_coord not in visited_points:
@@ -89,3 +130,4 @@ if __name__ == "__main__":
     
     file = open_file("day9.txt")
     print(count_moves(file)) # 6067
+    print(count_moves_of_10_units(file)) # 2471
