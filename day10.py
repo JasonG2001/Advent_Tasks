@@ -45,12 +45,10 @@ def return_pixels(instructions: List[str], grid_width: int, grid_height: int) ->
     return pixels
 
 
-def convert_to_grid(pixels: str, grid_width: int) -> str:
+def convert_to_grid(pixels: str, grid_width: int) -> None:
 
-    "\n".join(pixels[i:i+grid_width] for i in range(0, len(pixels), grid_width))
+    [print(pixels[i:i+grid_width]) for i in range(0, len(pixels), grid_width)]
 
-    return pixels
-    
 
 def calculate_signal_strength(instructions: List[str], stop_cycle: int) -> int:
 
@@ -89,8 +87,6 @@ def calculate_signal_strength_sum(instructions: List[str], *stop_cycles: int) ->
 if __name__ == "__main__":
     file: List[str] = open_file("day10.txt")
     print(calculate_signal_strength_sum(file, 20, 60, 100, 140, 180, 220)) # 12740
-    #pixels = give_pixels(40 * 6)
-    # print(draw_image(file, grid))
 
     pixels: str = return_pixels(file, 40, 6)
-    print(convert_to_grid(pixels, 40))
+    convert_to_grid(pixels, 40) # RBPARAGF
